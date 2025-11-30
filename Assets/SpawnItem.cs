@@ -1,19 +1,17 @@
 using UnityEngine;
 using UnityEngine.EventSystems; // Needed for IPointerClickHandler
 
-public class SpawnBoxVR : MonoBehaviour, IPointerClickHandler
+public class SpawnBoxVR : MonoBehaviour
 {
-    public GameObject boxPrefab;    // Drag your prefab here
-    public Transform playerCamera;  // Drag your VR camera here
-    public float spawnDistance = 2f;
+    public GameObject boxPrefab;   // Drag your prefab here
+    public Transform spawnPoint;   // Drag the GameObject where items should appear
 
-    // This method is called automatically by Unity when the Ray Interactor clicks this object
-    public void OnPointerClick(PointerEventData eventData)
+    // This will be called by the UI Button's OnClick event
+    public void SpawnItem()
     {
-        if (boxPrefab != null && playerCamera != null)
+        if (boxPrefab != null && spawnPoint != null)
         {
-            Vector3 spawnPos = playerCamera.position + playerCamera.forward * spawnDistance;
-            Instantiate(boxPrefab, spawnPos, Quaternion.identity);
+            Instantiate(boxPrefab, spawnPoint.position, spawnPoint.rotation);
         }
     }
 }
