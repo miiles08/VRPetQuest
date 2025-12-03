@@ -19,14 +19,14 @@ public class SpawnBoxVR : MonoBehaviour
     }
 
     public void BuyItem(float price)
-    {
+    {   
         GlobalTotals.totalSpent += price;              // Add price to total
         UpdateTotalText();                 // Update the UI
     }
 
     private void UpdateTotalText()
     {
-        totalText.text = "Species: Cat\nHappiness:\n$$$ Spent:" + GlobalTotals.totalSpent.ToString("0.00");
+        totalText.text = "Species: Cat\nHappiness:" + Happiness.happiness.ToString("0.00") + "\n$$$ Spent:" + GlobalTotals.totalSpent.ToString("0.00");
     }
 }
 

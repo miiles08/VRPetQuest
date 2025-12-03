@@ -9,6 +9,8 @@ TagManager:
   - Bowl
   - LitterBox
   - BoxOfLitter
+  - KittyMix
+  - WaterBowl
   layers:
   - Default
   - TransparentFX
