@@ -105,7 +105,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 3
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 0.3
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -113,7 +113,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.1
     manualTileSize: 0
     tileSize: 256
     buildHeightMesh: 0
@@ -5867,7 +5867,7 @@ GameObject:
   - component: {fileID: 192099029}
   m_Layer: 0
   m_Name: Wander1
-  m_TagString: Untagged
+  m_TagString: Spot1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5881,7 +5881,7 @@ Transform:
   m_GameObject: {fileID: 192099028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.4, y: 0, z: -1.704}
+  m_LocalPosition: {x: -3.4, y: 0.1, z: -1.704}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13685,7 +13685,7 @@ GameObject:
   - component: {fileID: 458280213}
   m_Layer: 0
   m_Name: Wander6
-  m_TagString: Untagged
+  m_TagString: Spot2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13698,8 +13698,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458280212}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.247, y: 0, z: -1.526}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.6279998, y: 0.1, z: 4.077}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23747,7 +23747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5125132301054401364, guid: 9aac42a3890e27b479a5c73e54179197, type: 3}
       propertyPath: m_TagString
-      value: Bowl
+      value: FoodBowl
       objectReference: {fileID: 0}
     - target: {fileID: 7436444426147044138, guid: 9aac42a3890e27b479a5c73e54179197, type: 3}
       propertyPath: m_LocalPosition.x
@@ -31781,7 +31781,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 7.0818863, y: 0, z: -6.958578, w: -2.495321}
+  m_margin: {x: 7.0818863, y: 0, z: -6.958578, w: 0.26926357}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -32150,7 +32150,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -8.953376, w: -2.495321}
+  m_margin: {x: 0.35436106, y: 0, z: -8.953376, w: 5.897221}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -40146,7 +40146,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1283587348}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Speed: 0.8
   m_Acceleration: 8
   avoidancePriority: 50
@@ -40186,6 +40186,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 1
+--- !u!95 &1283587355 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: d5b39b8b4eb2f174aaa0bcfa7235cfd5, type: 3}
+  m_PrefabInstance: {fileID: 1293683882}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1283587357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40198,15 +40203,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b73a55cf90b91428c5006a5956733b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  anim: {fileID: 0}
-  kibble: {fileID: 0}
-  water: {fileID: 0}
+  agent: {fileID: 1283587352}
+  anim: {fileID: 1283587355}
+  kibble: {fileID: 2076924849}
+  water: {fileID: 1732632318}
   litter: {fileID: 0}
-  laySpot: {fileID: 0}
   waitingSpot: {fileID: 0}
+  wanderPoints:
+  - {fileID: 192099029}
+  - {fileID: 458280213}
+  - {fileID: 1621610322}
+  water2: {fileID: 1732632317}
+  kibble2: {fileID: 2076924847}
   arrivalDistance: 0.3
   bathroomInterval: 30
+  drinkingTimer: 0
+  bowlHeight: 0.4
 --- !u!1 &1287243459
 GameObject:
   m_ObjectHideFlags: 0
@@ -40435,7 +40447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d5b39b8b4eb2f174aaa0bcfa7235cfd5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.109
+      value: 0.1026
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d5b39b8b4eb2f174aaa0bcfa7235cfd5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -52421,7 +52433,7 @@ GameObject:
   - component: {fileID: 1621610322}
   m_Layer: 0
   m_Name: Wander3
-  m_TagString: Untagged
+  m_TagString: Spot3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52435,7 +52447,7 @@ Transform:
   m_GameObject: {fileID: 1621610321}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.37, y: 0, z: 0.225}
+  m_LocalPosition: {x: 2.37, y: 0.1, z: 0.225}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -53359,37 +53371,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672445909}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1674295366
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1674295367}
-  m_Layer: 0
-  m_Name: Wander4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1674295367
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1674295366}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.11, y: 0, z: 1.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1675005006
 GameObject:
   m_ObjectHideFlags: 0
@@ -59866,7 +59847,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 83d75d064e7b17049abb91516eded6c9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.46079388
+      value: 4.107
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 83d75d064e7b17049abb91516eded6c9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -59874,7 +59855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 83d75d064e7b17049abb91516eded6c9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.310869
+      value: 6.708
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 83d75d064e7b17049abb91516eded6c9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -60563,7 +60544,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9190095107950864778, guid: 8949b4a88fb989e4483115e02dfafc96, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -126.07767
+      value: -126.519
       objectReference: {fileID: 0}
     - target: {fileID: 9190095107950864778, guid: 8949b4a88fb989e4483115e02dfafc96, type: 3}
       propertyPath: m_LocalPosition.y
@@ -65093,37 +65074,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1992567239}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1994398964
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1994398965}
-  m_Layer: 0
-  m_Name: Wander5
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1994398965
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1994398964}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.041, y: 0, z: 2.65}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1996145478
 GameObject:
   m_ObjectHideFlags: 0
@@ -66437,6 +66387,51 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2016523793}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2018040727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2018040729}
+  - component: {fileID: 2018040728}
+  m_Layer: 0
+  m_Name: HappinessManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2018040728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018040727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eded6402327ace04998fd84c3860dd37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decreaseInterval: 10
+--- !u!4 &2018040729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018040727}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -21.594236, y: -7.5460553, z: 6.298092}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2018376128
 GameObject:
   m_ObjectHideFlags: 0
@@ -70093,37 +70088,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2096484379}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &2097317436
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2097317437}
-  m_Layer: 0
-  m_Name: Wander2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2097317437
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097317436}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.748, y: 0, z: 2.65}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2099357079
 GameObject:
   m_ObjectHideFlags: 0
@@ -72180,10 +72144,8 @@ SceneRoots:
   - {fileID: 1293683882}
   - {fileID: 1299088464}
   - {fileID: 192099029}
-  - {fileID: 2097317437}
-  - {fileID: 1621610322}
-  - {fileID: 1674295367}
-  - {fileID: 1994398965}
   - {fileID: 458280213}
+  - {fileID: 1621610322}
   - {fileID: 1779043856}
   - {fileID: 61439226}
+  - {fileID: 2018040729}

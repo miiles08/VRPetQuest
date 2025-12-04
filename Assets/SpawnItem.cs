@@ -18,15 +18,17 @@ public class SpawnBoxVR : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        totalText.text = "Species: Cat\nHappiness:" + Happiness.happiness.ToString("0.00") + "\n$$$ Spent:" + GlobalTotals.totalSpent.ToString("0.00"+
+        "\n\nChores:\nx Food Bowl Filled: \n x Water Bowl Filled: \n x Litter Box Scooped: \n x Played With:");
+    }
+
     public void BuyItem(float price)
     {   
         GlobalTotals.totalSpent += price;              // Add price to total
-        UpdateTotalText();                 // Update the UI
+        
     }
 
-    private void UpdateTotalText()
-    {
-        totalText.text = "Species: Cat\nHappiness:" + Happiness.happiness.ToString("0.00") + "\n$$$ Spent:" + GlobalTotals.totalSpent.ToString("0.00");
-    }
 }
 

@@ -11,6 +11,10 @@ TagManager:
   - BoxOfLitter
   - KittyMix
   - WaterBowl
+  - FoodBowl
+  - Spot1
+  - Spot2
+  - Spot3
   layers:
   - Default
   - TransparentFX
