@@ -12812,6 +12812,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Kittys gotta eat! This nutritious dry food is perfect to feed your pet!
+    Up to 3 bowls worth!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14845,6 +14846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   water: {fileID: 1732632317}
+  time: 0
 --- !u!54 &488828694
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23826,6 +23828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kibble: {fileID: 2076924847}
+  time: 0
 --- !u!65 &763885546
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -14,7 +14,6 @@ public class SpawnBoxVR : MonoBehaviour
         if (boxPrefab != null && spawnPoint != null)
         {
             Instantiate(boxPrefab, spawnPoint.position, spawnPoint.rotation);
-
         }
     }
 

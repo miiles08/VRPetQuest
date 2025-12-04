@@ -30,17 +30,32 @@ public class CatAI1 : MonoBehaviour
 
     private float bathroomTimer;
     private enum CatState { Sleeping, Eating, Drinking, Laying, UsingLitter }
-
-
+    private bool layingDown;
+    private Transform layingTarget;
+    private bool awakeCat;
 
     private void Start()
     {
         bathroomTimer = bathroomInterval;
+        layingDown = false;
+        awakeCat = true;
         agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {   
+        if ((water2.activeSelf || kibble2.activeSelf) && layingDown == false)
+        {   
+        anim.SetBool("Laying", false);
+        anim.SetTrigger("SomethingToDo");
+        anim.SetTrigger("WakeUp");
+        }
+
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("CatSimple_Idle_1"))
+        {
+            awakeCat = true;
+        }
+
         if (water.gameObject.activeInHierarchy && water.position.y <= bowlHeight)
         {   
             //Calls Water Function
@@ -53,32 +68,15 @@ public class CatAI1 : MonoBehaviour
                 if (anim.GetCurrentAnimatorStateInfo(0).IsName("CatSimple_EatDrink_end"))
                 {   
                     water2.SetActive(false);
-                    Happiness.happiness += 10;
+                    Happiness.happiness += 25;
                     anim.SetBool("IsWalking", false);
                     anim.ResetTrigger("Drinking");
                     // Calls GoLayDown Method
-                    Transform target = GoLayDown();
-
-
-                    // Checks distance between agent and wanderpoints
-                    //float distance = Vector3.Distance(agent.transform.position, target.position);
-                    //if (distance <= 0.5f)
-                    //{
-                    //    anim.SetBool("Laying", true);
-
-                    //    if (water2.activeSelf || kibble2.activeSelf)
-                    //    {   
-                    //        anim.SetBool("Laying", false);
-                    //        anim.SetTrigger("SomethingToDo");
-                    //    }
-                    //}
-                    //
-
-
+                    layingTarget = GoLayDown();
                 }
             }
         }
-        if (kibble.gameObject.activeInHierarchy)
+        if (kibble.gameObject.activeInHierarchy && awakeCat == true)
         {
             GoToKibble();
 
@@ -91,29 +89,31 @@ public class CatAI1 : MonoBehaviour
                 {
                     anim.ResetTrigger("Drinking");
                     kibble2.SetActive(false);
-                    Happiness.happiness += 10;
+                    Happiness.happiness += 25;
                     anim.SetBool("IsWalking", false);
                     anim.ResetTrigger("Drinking");
                     // Calls GoLayDown function
-                    Transform target = GoLayDown();
-                    // Checks distance between agent and wanderpoints
-                    float distance = Vector3.Distance(agent.transform.position, target.position);
-                    if (distance <= 0.5f)
-                    {
-                        anim.SetBool("Laying", true);
-
-                        if (water2.activeSelf || kibble2.activeSelf)
-                        {   
-                            anim.SetBool("Laying", false);
-                            anim.SetTrigger("SomethingToDo");
-                        }
-                     }
-                     //
-
-
+                    layingTarget = GoLayDown();
+                   
                 }
             }
         }
+        //Checks distance between agent and wanderpoints
+        if (layingDown == true)
+        {
+            float distance = Vector3.Distance(agent.transform.position, layingTarget.position);
+            if (distance <= 0.5f)
+                 {
+                 anim.SetBool("Laying", true);
+                 layingDown = false;
+                 anim.ResetTrigger("SomethingToDo");
+                 anim.ResetTrigger("WakeUp");
+
+
+            }
+        }
+
+                    
         
     }
 
@@ -179,9 +179,13 @@ public class CatAI1 : MonoBehaviour
 
         // Set the agent destination
         agent.SetDestination(layspot.position);
+
+        layingDown = true;
+        awakeCat = false;
         return layspot;
         
         
     }
+
 
 }
