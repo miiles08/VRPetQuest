@@ -8,11 +8,12 @@ public class Interactions : MonoBehaviour
     
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("BoxOfLitter"))
+        if (other.CompareTag("BoxOfLitter") && (CatAI1.ate == true) && (KibbleScript.time <= 0))
         {
             if (!litter.activeSelf)
             {
                 litter.SetActive(true);
+                KibbleScript.time += 3000;
             }
         }
     }

@@ -18,6 +18,7 @@ public class CatAI1 : MonoBehaviour
 
     public GameObject water2;
     public GameObject kibble2; // Allows kibble to SetActive False. Transform follows position, this is the game objcet.
+    public GameObject litter2;
 
 
     [Header("Settings")]
@@ -33,27 +34,41 @@ public class CatAI1 : MonoBehaviour
     private bool layingDown;
     private Transform layingTarget;
     private bool awakeCat;
+    private bool catAte;
+    private bool ready;
+    public static bool ate;
 
     private void Start()
     {
         bathroomTimer = bathroomInterval;
         layingDown = false;
         awakeCat = true;
+        ready = false;
         agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {   
-        if ((water2.activeSelf || kibble2.activeSelf) && layingDown == false)
+        if ((water2.activeSelf || kibble2.activeSelf || (litter2.activeSelf && catAte == true)) && layingDown == false)
         {   
         anim.SetBool("Laying", false);
         anim.SetTrigger("SomethingToDo");
         anim.SetTrigger("WakeUp");
         }
 
+        //So when the cat goes to the water bowl, it can only move when the idle animation 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("CatSimple_Idle_1"))
         {
-            awakeCat = true;
+            if (catAte == true && litter.gameObject.activeInHierarchy)
+            {
+                GoToLitter();
+            }
+            else
+            {
+                awakeCat = true;
+            }
+
+            
         }
 
         if (water.gameObject.activeInHierarchy && water.position.y <= bowlHeight)
@@ -68,6 +83,7 @@ public class CatAI1 : MonoBehaviour
                 if (anim.GetCurrentAnimatorStateInfo(0).IsName("CatSimple_EatDrink_end"))
                 {   
                     water2.SetActive(false);
+                    GlobalTotals.wBowlFilled += 1;
                     Happiness.happiness += 25;
                     anim.SetBool("IsWalking", false);
                     anim.ResetTrigger("Drinking");
@@ -89,9 +105,13 @@ public class CatAI1 : MonoBehaviour
                 {
                     anim.ResetTrigger("Drinking");
                     kibble2.SetActive(false);
+                    GlobalTotals.kBowlFilled += 1;
                     Happiness.happiness += 25;
                     anim.SetBool("IsWalking", false);
                     anim.ResetTrigger("Drinking");
+                    catAte = true;
+                    ate = true;
+
                     // Calls GoLayDown function
                     layingTarget = GoLayDown();
                    
@@ -111,6 +131,27 @@ public class CatAI1 : MonoBehaviour
 
 
             }
+        }
+        if (ready == true)
+        {
+            if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z),
+                     new Vector3(litter.transform.position.x, 0, litter.transform.position.z)) <= 0.5f)
+                {
+                    // Cat is within 0.1 meters horizontally of the litter
+                    anim.SetBool("IsWalkingDefecate", true);
+                    if (anim.GetCurrentAnimatorStateInfo(0).IsName("DonePooping"))
+                    {   
+                        litter2.SetActive(false);
+                        GlobalTotals.litterBoxFilled += 1;
+                        catAte = false;
+                        Happiness.happiness += 15;
+                        anim.SetBool("IsWalking", false);
+                        anim.SetBool("IsWalkingDefecate", false);
+                        ready = false;
+                        // Calls GoLayDown Method
+                        layingTarget = GoLayDown();
+                    }
+                }
         }
 
                     
@@ -136,6 +177,31 @@ public class CatAI1 : MonoBehaviour
 
         // Set the agent destination
         agent.SetDestination(GameObject.FindGameObjectWithTag("WaterBowl").transform.position);
+
+    }
+
+        private void GoToLitter()
+
+        //Cat to be awake, litteractive, catAte == true
+    {   
+        anim.SetBool("IsWalking", true);
+
+        agent.isStopped = false;
+
+        // Smooth horizontal rotation toward water
+        Vector3 lookPos = litter.position - transform.position;
+        lookPos.y = 0; // ignore vertical differences
+        if (lookPos.sqrMagnitude > 0.001f) 
+        {
+            Quaternion targetRot = Quaternion.LookRotation(lookPos);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * 5f);
+        }
+
+        // Set the agent destination
+        agent.SetDestination(GameObject.FindGameObjectWithTag("LitterBox").transform.position);
+
+        ready = true;
+        
 
     }
 
@@ -182,6 +248,7 @@ public class CatAI1 : MonoBehaviour
 
         layingDown = true;
         awakeCat = false;
+
         return layspot;
         
         

@@ -9372,7 +9372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 1594654010}
-  shopScreen: {fileID: 164313063}
+  shopScreen: {fileID: 1243272703}
   statsScreen: {fileID: 0}
 --- !u!1 &295224959
 GameObject:
@@ -14846,7 +14846,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   water: {fileID: 1732632317}
-  time: 0
 --- !u!54 &488828694
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23828,7 +23827,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kibble: {fileID: 2076924847}
-  time: 0
 --- !u!65 &763885546
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40210,7 +40208,7 @@ MonoBehaviour:
   anim: {fileID: 1283587355}
   kibble: {fileID: 2076924849}
   water: {fileID: 1732632318}
-  litter: {fileID: 0}
+  litter: {fileID: 1360577724}
   waitingSpot: {fileID: 0}
   wanderPoints:
   - {fileID: 192099029}
@@ -40218,6 +40216,7 @@ MonoBehaviour:
   - {fileID: 1621610322}
   water2: {fileID: 1732632317}
   kibble2: {fileID: 2076924847}
+  litter2: {fileID: 1360577721}
   arrivalDistance: 0.3
   bathroomInterval: 30
   drinkingTimer: 0
@@ -41576,7 +41575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPage: {fileID: 1243272703}
   nextPage: {fileID: 0}
-  previousPage: {fileID: 602901134}
+  previousPage: {fileID: 1594654010}
 --- !u!114 &1322480470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43653,6 +43652,11 @@ MonoBehaviour:
 --- !u!1 &1360577721 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2812626769821355885, guid: 83d75d064e7b17049abb91516eded6c9, type: 3}
+  m_PrefabInstance: {fileID: 1863814579}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1360577724 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4518117040427802074, guid: 83d75d064e7b17049abb91516eded6c9, type: 3}
   m_PrefabInstance: {fileID: 1863814579}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1360826350
@@ -49748,8 +49752,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Species: Cat\nHappiness: \n$$$ Spent:\n\nChores:\nx Food Bowl Filled:\nx
-    Water Bowl Filled:\nx Litter Box Scooped:\nx Played With: "
+  m_text: "Species: Cat\nHappiness: \n$$$ Spent:\n\nChores:\nx Food Bowl Emptied:\nx
+    Water Bowl Emptied:\nx Litter Box Emptied:\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -59903,6 +59907,10 @@ PrefabInstance:
     - target: {fileID: 2812626769821355885, guid: 83d75d064e7b17049abb91516eded6c9, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812626769821355885, guid: 83d75d064e7b17049abb91516eded6c9, type: 3}
+      propertyPath: m_TagString
+      value: LitterBox
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
